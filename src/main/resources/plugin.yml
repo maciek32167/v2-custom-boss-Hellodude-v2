@@ -1,0 +1,17 @@
+name: HellodudeBoss
+version: 1.0
+main: com.hellodude.boss.HellodudeBossPlugin
+api-version: '1.21'
+authors: [Hellodude]
+description: Custom boss plugin - Hellodude's Dad
+
+commands:
+  bossfight:
+    description: Spawn a boss
+    usage: /bossfight <bossname>
+    permission: hellodude.boss.spawn
+
+permissions:
+  hellodude.boss.spawn:
+    description: Allows spawning bosses
+    default: op

@@ -1,0 +1,77 @@
+# ================================================
+#   Hellodude Boss Plugin - Config
+# ================================================
+# Po zmianie konfiguracji zrób /reload lub restart serwera.
+#
+# LOOT:
+#   Zawsze wypada DOKŁADNIE 1 item.
+#   "weight" = waga (im wyżej tym większa szansa).
+#   Suma wszystkich wag = 100 = 100% szans.
+#   Żeby zmienić szansę - zmień wagę danego itemu.
+#   Pamiętaj żeby suma wag nadal wynosiła 100!
+#
+# ENCHANTY:
+#   Format: enchantments: { protection: 5 }
+#   Możesz dodać wiele enchantów.
+#
+# TRIM (zdobienie):
+#   trim_material: netherite (lub gold, iron, itp.)
+#   trim_pattern: spire (lub sentry, dune, itp.)
+# ================================================
+
+boss:
+  name: "Hellodude's Dad"
+  health: 1000
+  scale: 1.5
+
+  loot:
+    # 30% - Sztabka netherytu
+    - type: NETHERITE_INGOT
+      amount: 1
+      weight: 30
+
+    # 2.5% - Hełm netherytu z Protection 5 i zdobieniem Spire
+    - type: NETHERITE_HELMET
+      amount: 1
+      weight: 2.5
+      enchantments:
+        protection: 5
+      trim_material: netherite
+      trim_pattern: spire
+
+    # 2.5% - Napierśnik netherytu z Protection 5 i zdobieniem Spire
+    - type: NETHERITE_CHESTPLATE
+      amount: 1
+      weight: 2.5
+      enchantments:
+        protection: 5
+      trim_material: netherite
+      trim_pattern: spire
+
+    # 2.5% - Spodnie netherytu z Protection 5 i zdobieniem Spire
+    - type: NETHERITE_LEGGINGS
+      amount: 1
+      weight: 2.5
+      enchantments:
+        protection: 5
+      trim_material: netherite
+      trim_pattern: spire
+
+    # 2.5% - Buty netherytu z Protection 5 i zdobieniem Spire
+    - type: NETHERITE_BOOTS
+      amount: 1
+      weight: 2.5
+      enchantments:
+        protection: 5
+      trim_material: netherite
+      trim_pattern: spire
+
+    # 30% - 6 zaklętych złotych jabłek
+    - type: ENCHANTED_GOLDEN_APPLE
+      amount: 6
+      weight: 30
+
+    # 30% - Gwiazda netheru
+    - type: NETHER_STAR
+      amount: 1
+      weight: 30
