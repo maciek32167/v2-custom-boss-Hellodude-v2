@@ -150,13 +150,20 @@ public class BossManager {
         // Oznacz jako naszego bossa
         ravager.getPersistentDataContainer().set(bossKey, PersistentDataType.STRING, "HellodudesDad");
 
-        // === Zasięg wyczuwania graczy: 105 bloków ===
-        try {
-            AttributeInstance followRange = ravager.getAttribute(Attribute.GENERIC_FOLLOW_RANGE);
-            if (followRange != null) followRange.setBaseValue(105.0);
-        } catch (Exception e) {
-            log.warning("Blad ustawiania follow range: " + e.getMessage());
+// === Zasięg wyczuwania graczy: 105 bloków ===
+        boolean followRangeSet = false;
+        for (String attrName : new String[]{"GENERIC_FOLLOW_RANGE", "FOLLOW_RANGE"}) {
+            try {
+                Attribute attr = Attribute.valueOf(attrName);
+                AttributeInstance inst = ravager.getAttribute(attr);
+                if (inst != null) {
+                    inst.setBaseValue(105.0);
+                    followRangeSet = true;
+                    break;
+                }
+            } catch (IllegalArgumentException ignored) {}
         }
+        if (!followRangeSet) log.warning("Nie mozna ustawic follow range - atrybut niedostepny.");
 
         // === Boss Bar ===
         bossBar = Bukkit.createBossBar(bossName, BarColor.RED, BarStyle.SOLID);
@@ -186,13 +193,20 @@ public class BossManager {
     //   Ustawianie atrybutów
     // ================================================
 
-    private void setMaxHealth(LivingEntity entity, double health) {
-        try {
-            AttributeInstance attr = entity.getAttribute(Attribute.GENERIC_MAX_HEALTH);
-            if (attr != null) attr.setBaseValue(health);
-        } catch (Exception e) {
-            log.warning("Blad ustawiania max HP: " + e.getMessage());
+private void setMaxHealth(LivingEntity entity, double health) {
+        boolean set = false;
+        for (String attrName : new String[]{"GENERIC_MAX_HEALTH", "MAX_HEALTH"}) {
+            try {
+                Attribute attr = Attribute.valueOf(attrName);
+                AttributeInstance inst = entity.getAttribute(attr);
+                if (inst != null) {
+                    inst.setBaseValue(health);
+                    set = true;
+                    break;
+                }
+            } catch (IllegalArgumentException ignored) {}
         }
+        if (!set) log.warning("Nie mozna ustawic max HP - atrybut niedostepny.");
     }
 
     private void setScale(LivingEntity entity, double scale) {
